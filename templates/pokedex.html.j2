@@ -1,0 +1,48 @@
+{% extends 'base.html.j2' %}
+{% block title %}
+Pokedex
+{% endblock %}
+
+
+{% block content %}
+<h1>Pokedex</h1>
+<form action="/Pokedex" method="POST">
+  <div class="mb-3">
+    <label for="poke_name" class="form-label">Pokemon Name</label>
+    <input type="text" name="poke_name" class="form=control" id="poke_name">
+    <div id="emailHelp" class="form-text">Please Type The Name of Your Pokemon</div>
+  </div>
+  <div style="color=red"><small>{{error}}</small></div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% if pokes %}
+
+    <table class="table table-striped table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Ability</th>
+        <th scope="col">Base XP</th>
+        <th scope="col">Picture</th>
+        <th scope="col">Attack Base</th>
+        <th scope="col">Defense Base</th>
+        <th scope="col">HP Base</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for new_poke in pokes %}
+      <tr>
+        <th scope="row">{{new_poke.name}}</th>
+        <td>{{new_poke.ability}}</td>
+        <td>{{new_poke.base_xp}}</td>
+        <td>{{new_poke.picture}}</td>
+        <td>{{new_poke.attack_base}}</td>
+        <td>{{new_poke.defense_base}}</td>
+        <td>{{new_poke.hp_base}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+{% endif %}
+{% endblock %}
