@@ -1,0 +1,50 @@
+{% extends 'base.html.j2' %}
+{% block title %}
+Pokedex
+{% endblock %}
+
+
+{% block content %}
+<h1>Pokedex</h1>
+<form action="/pokedex" method="POST">
+  <div class="mb-3">
+  {{form.hidden_tag()}}
+    {{form.pokename.label(class="form-label")}}
+    {{form.pokename(class="form-control")}}
+    {% for error in form.pokename.errors %}
+      <small style="color=red">{{error}}</small>
+    {% endfor %}
+  </div>
+  <div>
+  {{form.submit(class = "btn btn-primary form-control")}}
+  </div>
+  {% if pokes %}
+
+    <table class="table table-striped table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Ability</th>
+        <th scope="col">Base XP</th>
+        <th scope="col">Picture</th>
+        <th scope="col">Attack Base</th>
+        <th scope="col">Defense Base</th>
+        <th scope="col">HP Base</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{pokes.name}}</th>
+        <td>{{pokes.ability}}</td>
+        <td>{{pokes.base_xp}}</td>
+        <td>{{pokes.picture}}</td>
+        <td>{{pokes.attack_base}}</td>
+        <td>{{pokes.defense_base}}</td>
+        <td>{{pokes.hp_base}}</td>
+      </tr>
+    </tbody>
+    </table>
+
+  {% endif %}
+</form>
+{% endblock %}
