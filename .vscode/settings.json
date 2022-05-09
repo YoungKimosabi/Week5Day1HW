@@ -1,0 +1,8 @@
+{ "python.defaultInterpreterPath":"C:/Users/Kyle Largent/Documents/Coding Temple/Week 5/Day1 Homework/venv/Scripts/python",
+  "python.linting.pylintPath":"C:/Users/Kyle Largent/Documents/Coding Temple/Week 5/Day1 Homework/venv/Scripts/pylint",
+
+
+
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}

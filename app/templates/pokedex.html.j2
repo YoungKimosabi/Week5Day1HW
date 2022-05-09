@@ -3,8 +3,14 @@
 Pokedex
 {% endblock %}
 
+{% block css %}
+<link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+                
+<link rel="stylesheet" href="{{url_for('static', filename='css/pokedex.css')}}">
+{% endblock %}
 
 {% block content %}
+<div class='text'>
 <h1>Pokedex</h1>
 <form action="/pokedex" method="POST">
   <div class="mb-3">
@@ -37,13 +43,14 @@ Pokedex
         <th scope="row">{{pokes.name}}</th>
         <td>{{pokes.ability}}</td>
         <td>{{pokes.base_xp}}</td>
-        <td>{{pokes.picture}}</td>
+        <td><img src={{ pokes.picture }}></td>
         <td>{{pokes.attack_base}}</td>
         <td>{{pokes.defense_base}}</td>
         <td>{{pokes.hp_base}}</td>
       </tr>
     </tbody>
     </table>
+    </div>
 
   {% endif %}
 </form>

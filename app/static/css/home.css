@@ -1,0 +1,19 @@
+body{
+    background-image: url(https://wallpapercave.com/wp/EFFw9UV.jpg);
+    height: 95vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+
+.text{
+    position: relative;
+    right: 20%;
+    font-family: 'Pokemon Solid', sans-serif;
+    background-image: linear-gradient(60deg, #E21143, #FFB03A);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    padding-top: 45px;
+}

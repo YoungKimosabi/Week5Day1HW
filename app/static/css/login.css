@@ -1,0 +1,15 @@
+.container{
+    margin-left: 0;
+    max-width: 50%;
+    margin-top: 50px;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/640px-Pok%C3%A9_Ball_icon.svg.png);
+    background-repeat: no-repeat;
+    height: 95vh
+}
+body{
+    background-image:  url(https://ik.imagekit.io/22fvbybxk/pikachu_gZQdSjrgU.png?ik-sdk-version=javascript-1.4.3&updatedAt=1652131825813);
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 95vh;
+    
+}

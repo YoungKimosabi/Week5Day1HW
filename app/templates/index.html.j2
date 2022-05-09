@@ -3,8 +3,18 @@
     Homepage
 {% endblock %}
 
+{% block css %}
+<link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+                
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+{% endblock %}
+
+
 {% block content %}
-    <h1>CAE-89 Is the greatest.</h1>
-    <h5>They are gonna destroy Flask</h5>
-    Because they are animals!
+    
+    <div class = 'text'>
+    <h1>Welcome To the Podex! (Not TM BTW)</h1>
+    <h5>To continue, please go to the pokedex tab!</h5>
+    </div>
+   
 {% endblock %}
