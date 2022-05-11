@@ -3,6 +3,32 @@ from flask_login import UserMixin
 from datetime import datetime as dt
 from werkzeug.security import generate_password_hash, check_password_hash
 
+class PokemonUser(db.Model):
+    poke_id = db.Column(db.Integer, db.ForeignKey('pokemon.poke_id'), primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+
+class Pokemon(db.Model):
+    poke_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    base_experience = db.Column(db.Integer)
+    hp = db.Column(db.Integer)
+    attack = db.Column(db.Integer)
+    defense = db.Column(db.Integer)
+    ability = db.Column(db.String)
+
+    def dict(self, data):
+        self.poke_id = data['poke_id']
+        self.name = data['name']
+        self.base_experience=data['base_experience']
+        self.hp =data['hp']
+        self.attack = data['attack']
+        self.defense = data['defense']
+        self.ability = data['ability']
+
+    def save(self):
+        db.session.add(self) #adds the pokemon to the db session
+        db.session.commit()
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
@@ -11,6 +37,11 @@ class User(UserMixin, db.Model):
     password =  db.Column(db.String)
     created_on = db.Column(db.DateTime, default=dt.utcnow)
     icon = db.Column(db.Integer)
+    roster = db.relationship(Pokemon,
+                secondary='pokemon_user',
+                backref = 'users',
+                lazy='dynamic'
+                )
 
 
     # should return a unique identifing string
@@ -43,6 +74,16 @@ class User(UserMixin, db.Model):
 
     def get_icon_url(self):
         return f'https://avatars.dicebear.com/api/avataaars/{self.icon}.svg'
+
+    def catchem(self, pokemon):
+        if not self.pokemon_in_roster(pokemon) and self.roster.count()<5:
+            self.roster.append(pokemon)
+            db.session.commit()
+
+    def release(self, pokemon):
+        if self.pokemon_in_roster(pokemon):
+            self.roster.remove(pokemon)
+            db.session.commit()
     
 @login.user_loader
 def load_user(id):
